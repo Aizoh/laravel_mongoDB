@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
-
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('mongoposts')->group(function(){
+    Route::resource('posts', PostController::class);
+});
+
 Route::get('/browse_movies/', [MovieController::class, 'show']);
+
+Auth::routes();
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

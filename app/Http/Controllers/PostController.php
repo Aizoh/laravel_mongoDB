@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -13,6 +12,11 @@ class PostController extends Controller
     public function index()
     {
         //
+        $posts = Post::all();
+        $data = [
+            'posts' => $posts,
+        ];
+        return view('posts.index', $data);
     }
 
     /**
@@ -21,6 +25,8 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view ('posts.create');
+
     }
 
     /**
@@ -29,6 +35,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $this->validate($request,[
+            'title' => 'required',
+            'publish_date'=> 'required|date',
+            'topic' => 'nullable',
+            'content' => 'nullable'
+        ]);
+        ///dd($validatedData);
+        $post = Post::create($validatedData);
+        return redirect()->route('posts.index');
     }
 
     /**

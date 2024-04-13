@@ -74,6 +74,15 @@ class User extends Authenticatable
 //also in the service provider include
 MongoDB\Laravel\Auth\PasswordResetServiceProvider::class,
 
+//Auth scaffold
+ composer require laravel/ui
+//Generate Basic Scaffolding & with Authentication Using Bootstrap
+$ php artisan ui bootstrap $ php artisan ui bootstrap --auth
+
+//Generate Basic Scaffolding & with Authentication Using Vue
+
+$ php artisan ui vue $ php artisan ui vue --auth
+
 ```
 - **Eloquent Model Relationships**
 
@@ -244,3 +253,16 @@ if ($hasCollection) {
 }
 ```
 [GOOD MEDIUM READS](https://medium.com/@mohammad.roshandelpoor/how-to-use-mongodb-in-laravel-24e615ee68de)
+
+## Issues Encountered 
+
+```php
+Class "MongoDB\Driver\Manager" not found
+
+```
+Source For a website not running on fpm ensure that you have the mongodb extension within the current apache php version
+Problem is when you install MongoDB on a higher cli php version and downgrade there will be a mismatch.
+
+How I fixed it. I changed my Apache PHP to the version that was selected duging mongo installation.
+
+

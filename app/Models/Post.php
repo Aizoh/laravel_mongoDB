@@ -19,7 +19,10 @@ class Post extends Model
         'body',
         'image',
         'views',
-        'comments'
+        'comments',
+        'content',
+        'topic',
+        'publish_date'
     ];
 
     protected $casts = [
