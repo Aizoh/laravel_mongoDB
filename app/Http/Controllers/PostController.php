@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -18,6 +19,16 @@ class PostController extends Controller
         ];
         return view('posts.index', $data);
     }
+
+    public function indexapi()
+    {
+        $posts = Post::all();
+        $data = [
+            'posts' => $posts,
+        ];
+        return response()->json($data);
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -46,6 +57,19 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
+    public function storeapi(Request $request)
+    {
+        //
+        $validatedData = $this->validate($request,[
+            'title' => 'required',
+            'publish_date'=> 'required|date',
+            'topic' => 'nullable',
+            'content' => 'nullable'
+        ]);
+        ///dd($validatedData);
+        return Post::create($request->all());
+    }
+
     /**
      * Display the specified resource.
      */
@@ -56,6 +80,15 @@ class PostController extends Controller
             'post' => $post
         ];
         return view ('posts.show', $data);
+    }
+
+    public function showapi(Post $post)
+    {
+        //
+        $data = [
+            'post' => $post
+        ];
+        return response()->json($data);
     }
 
     /**

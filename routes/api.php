@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,15 @@ use App\Http\Controllers\MovieController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**UNprotected routes */
+
+Route::get('/postapi/{post}', [PostController::class, 'showapi']);
+Route::get('/postsapi', [PostController::class, 'indexapi']);
+
+Route::post('/postsapi', [PostController::class, 'storeapi']);
+/**UNprotected routes */
+// Route::resource('posts', PostController::class);
 
 Route::resource('movies', MovieController::class)->only([
   'store'

@@ -265,4 +265,20 @@ Problem is when you install MongoDB on a higher cli php version and downgrade th
 
 How I fixed it. I changed my Apache PHP to the version that was selected duging mongo installation.
 
+## Creating APIs 
 
+```php
+composer require laravel/sanctum
+
+/**
+ *  if you plan to utilize Sanctum to authenticate a SPA, you should add Sanctum's middleware to your api middleware group within your application's
+ * **/
+'api' => [
+    \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+],
+
+//php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+// define the API routes
+```
