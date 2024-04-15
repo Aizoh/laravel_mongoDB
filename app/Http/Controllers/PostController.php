@@ -52,6 +52,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        $data = [
+            'post' => $post
+        ];
+        return view ('posts.show', $data);
     }
 
     /**
@@ -60,6 +64,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+        $data = [
+            'post' => $post
+        ];
+        return view ('posts.edit', $data);
     }
 
     /**
@@ -68,6 +76,14 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $validatedData = $this->validate($request,[
+            'title' => 'required',
+            'publish_date'=> 'required|date',
+            'topic' => 'nullable',
+            'content' => 'nullable'
+        ]);
+        $post->update($validatedData);
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -76,5 +92,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

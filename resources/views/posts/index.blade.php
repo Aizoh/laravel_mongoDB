@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">All Posts</div>
+                <div class="card-header">All Posts <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm">Add New</a> </div>
 
                 <div class="card-body">
                     <table class="table">

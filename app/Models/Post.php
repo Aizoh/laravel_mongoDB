@@ -11,19 +11,21 @@ class Post extends Model
     use HasFactory;
     protected $connection = 'mongodb';
 
-    protected $fillable = [
-        'title',
-        'edited_at',
-        'author',
-        'editor',
-        'body',
-        'image',
-        'views',
-        'comments',
-        'content',
-        'topic',
-        'publish_date'
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'edited_at',
+    //     'author',
+    //     'editor',
+    //     'body',
+    //     'image',
+    //     'views',
+    //     'comments',
+    //     'content',
+    //     'topic',
+    //     'publish_date'
+    // ];
+
+    protected $guarded = [];
 
     protected $casts = [
         'edited_at' => 'datetime',

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create Post</div>
+                <div class="card-header">Create Post <a href="{{ route('posts.index') }}" class="btn btn-primary btn-sm">Back</a></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('posts.store') }}">
